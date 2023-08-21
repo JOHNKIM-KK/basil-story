@@ -9,6 +9,7 @@ export type TPost = {
   path: string;
   featured: boolean;
 };
+export type TPostData = TPost & { content: string };
 
 export async function getAllPost(): Promise<TPost[]> {
   const filePath = path.join(process.cwd(), "data", "posts.json");
@@ -22,4 +23,16 @@ export async function getFeaturedPost(): Promise<TPost[]> {
 }
 export async function getNonFeaturedPost(): Promise<TPost[]> {
   return getAllPost().then((post) => post.filter((p) => !p.featured));
+}
+
+export async function getPostData(fileName: string): Promise<TPostData> {
+  const filePath = path.join(process.cwd(), "data", "posts", `${fileName}.md`);
+  const metadata = await getAllPost().then((posts) =>
+    posts.find((post) => post.path === fileName),
+  );
+  if (!metadata)
+    throw new Error(`${fileName}에 해당하는 포스트를 찾을 수 없음`);
+
+  const content = await readFile(filePath, "utf-8");
+  return { ...metadata, content };
 }
