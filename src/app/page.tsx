@@ -1,5 +1,11 @@
-import Image from "next/image";
+import Hero from "@/app/components/hero";
+import FeaturedPosts from "@/app/components/FeaturedPosts";
 
-export default function Home() {
-  return <main className="bg-gray-500">main</main>;
+export default function HomePage() {
+  return (
+    <section>
+      <Hero />
+      <FeaturedPosts />
+    </section>
+  );
 }
