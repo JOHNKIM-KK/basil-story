@@ -1,4 +1,5 @@
 import { getPostData } from "@/service/post";
+import MarkdownViewer from "@/app/components/MarkdownViewer";
 
 type TProps = {
   params: {
@@ -12,7 +13,7 @@ export default async function PostPage({ params: { slug } }: TProps) {
   return (
     <>
       <h1>{post.title}</h1>
-      <pre>{post.content}</pre>
+      <MarkdownViewer content={post.content} />
     </>
   );
 }
