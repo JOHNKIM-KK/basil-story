@@ -1,3 +1,9 @@
+import AllPosts from "@/app/components/AllPosts";
+
 export default function StoryPage() {
-  return <div>스토리 들</div>;
+  return (
+    <section>
+      <AllPosts />
+    </section>
+  );
 }

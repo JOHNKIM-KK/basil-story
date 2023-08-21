@@ -20,3 +20,6 @@ export async function getAllPost(): Promise<TPost[]> {
 export async function getFeaturedPost(): Promise<TPost[]> {
   return getAllPost().then((post) => post.filter((p) => p.featured));
 }
+export async function getNonFeaturedPost(): Promise<TPost[]> {
+  return getAllPost().then((post) => post.filter((p) => !p.featured));
+}
